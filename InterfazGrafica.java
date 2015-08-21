@@ -84,7 +84,7 @@ public class InterfazGrafica {
 		 */
 		public void initialize(){
 			frame = new JFrame();
-			frame.setBounds(100, 100, 622, 381);
+			frame.setBounds(100, 100, 650, 381);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.getContentPane().setLayout(null);
 			
@@ -121,6 +121,7 @@ public class InterfazGrafica {
 			//---------------------
 			
 			RBList = new JRadioButton("Lista");
+			RBList.setSelected(true);
 			RBList.setBounds(220, 220, 100, 25);
 			RBList.addActionListener(new Evento());
 			frame.getContentPane().add(RBList);
@@ -140,11 +141,15 @@ public class InterfazGrafica {
 			RBListCir.addActionListener(new Evento());
 			frame.getContentPane().add(RBListCir);
 			
+			RBVec = new JRadioButton("Lista tipo Vector");
+			RBVec.setBounds(320, 220, 120, 25);
+			RBVec.addActionListener(new Evento());
+			frame.getContentPane().add(RBVec);			
 			
-			
-			
-			
-			
+			RBArrayList = new JRadioButton("Lista tipo ArrayList");
+			RBArrayList.setBounds(440, 220, 140, 25);
+			RBArrayList.addActionListener(new Evento());
+			frame.getContentPane().add(RBArrayList);
 			
 		}
 		/**
@@ -166,8 +171,9 @@ public class InterfazGrafica {
 			            file = fc.getSelectedFile();
 			            textField.setText(file.getAbsolutePath());
 			        } 
-				}else{
+				}else if(a.getSource()==buttonCalcular) {
 					try {
+						calculadora.setPila(tipo);
 						calculadora.readFile(file.getAbsolutePath());
 						textArea.setText(String.valueOf("El resultado final de su operacion es: " +calculadora.calcular()));
 					} catch ( Exception e) {
